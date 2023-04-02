@@ -43,6 +43,21 @@ services:
     depends_on:
       - nginx
 
+  elastic:
+    image: docker.io/elastic/elasticsearch:7.7.0
+    environment:
+      - discovery.type=single-node
+    ports:
+      - 9200:9200
+
+  etl:
+    build: postgres_to_es
+    env_file:
+      - ./.env
+    depends_on:
+      - nginx
+      - elastic
+      - web
 
 volumes:
   media_vol:

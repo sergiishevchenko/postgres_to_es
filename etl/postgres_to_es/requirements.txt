@@ -1,6 +1,0 @@
-isort==5.10.1
-flake8==4.0.1
-elasticsearch==7.17.1
-psycopg2-binary==2.9.3
-python-dotenv==0.20.0
-redis==4.2.2

@@ -1,7 +1,7 @@
 import json
 
 
-class Transformer:
+class DataTransform:
     def transform(self, transformed_data: dict) -> list[dict]:
         transformed_data = []
         for record in transformed_data:

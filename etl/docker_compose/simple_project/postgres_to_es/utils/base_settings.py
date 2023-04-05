@@ -1,6 +1,6 @@
 import dotenv
 
-from pydantic import BaseSettings, Field
+from pydantic import BaseModel, BaseSettings, Field
 
 
 dotenv.load_dotenv()
@@ -27,3 +27,21 @@ class BaseConfig(BaseSettings):
     els_default_url: str = ELSDefaultUrl().get_url()
     database: dict = DataBase().dict()
     sleep_time: float = Field(60.0, env='ELS_SLEEP')
+
+
+class ESPerson(BaseModel):
+    id: str
+    name: str
+
+
+class ESFilmWork(BaseModel):
+    id: str
+    imdb_rating: float | None
+    genre: list[str]
+    title: str
+    description: str | None
+    director: list[str]
+    actors_names: list[str]
+    writers_names: list[str]
+    actors: list[ESPerson]
+    writers: list[ESPerson]

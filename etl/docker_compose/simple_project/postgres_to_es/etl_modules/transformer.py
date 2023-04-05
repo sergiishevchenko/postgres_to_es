@@ -2,9 +2,11 @@ import json
 
 
 class DataTransform:
-    def transform(self, transformed_data: dict) -> list[dict]:
-        transformed_data = []
-        for record in transformed_data:
+    '''Класс DataTransform предназначен для обработки данных из PostgreSQL для загрузки в Elasticsearch.'''
+
+    def transform_filmworks(self, transformed_filmworks: dict) -> list[dict]:
+        transformed_filmworks = []
+        for record in transformed_filmworks:
             filmwork = {
                 'id': record['id'],
                 'imdb_rating': record['imdb_rating'],
@@ -17,5 +19,5 @@ class DataTransform:
                 'actors': json.loads(record['actors']) if record['actors'] is not None else [],
                 'writers': json.loads(record['writers']) if record['writers'] is not None else []
             }
-            transformed_data.append(filmwork)
-        return transformed_data
+            transformed_filmworks.append(filmwork)
+        return transformed_filmworks
